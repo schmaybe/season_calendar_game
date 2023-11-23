@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../custom_widgets/score.dart';
 import '../model/vegetable.dart';
 import '../providers/providers.dart';
+import 'game_dialogs.dart';
 
 class GameRoot extends ConsumerWidget {
   const GameRoot({super.key});
@@ -19,11 +20,17 @@ class GameRoot extends ConsumerWidget {
     final seasonPoints = ref.watch(seasonPointsProvider);
     final levelCompleted = ref.watch(levelCompletedProvider);
 
-    // if(levelCompleted){
-    //   return AlertDialog(
-    //     title: Text("$score"),
-    //   );
-    // }
+    if (levelCompleted) {
+      Future.microtask(() => GameDialogs.showLevelCompletedDialog(
+          context,
+          score,
+          level,
+              () {
+            ref.read(levelCompletedProvider.notifier).state = false;
+          },
+        )
+      );
+    }
 
     return Scaffold(
       appBar: AppBar(

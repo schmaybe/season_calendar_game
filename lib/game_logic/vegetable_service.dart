@@ -151,16 +151,19 @@ class VegetableService{
     } else {
       // change level
       if (currentLevel < 4) {
+        if (isLevelCompleted()) {
+          ref.read(levelCompletedProvider.notifier).state = true;
+        }
         currentLevel++;
         currentIndex = 0;
         ref.read(levelProvider.notifier).state = currentLevel;
-        ref.read(levelCompletedProvider.notifier).state = false;
+        // ref.read(levelCompletedProvider.notifier).state = false;
+        ref.read(selectedSeasonsProvider.notifier).state = [];
+        ref.read(seasonCheckResultsProvider.notifier).state = {};
+        ref.read(seasonPointsProvider.notifier).state = {};
       } else {
         //if all levels finished
       }
-    }
-    if (isLevelCompleted()) {
-      ref.read(levelCompletedProvider.notifier).state = true;
     }
   }
 
