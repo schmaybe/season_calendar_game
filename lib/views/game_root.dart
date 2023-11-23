@@ -21,12 +21,29 @@ class GameRoot extends ConsumerWidget {
     final levelCompleted = ref.watch(levelCompletedProvider);
 
     if (levelCompleted) {
+      int maxScore = 0;
+      switch (level) {
+        case 1:
+          maxScore = vegetableService.maxScoreLevel1;
+          break;
+        case 2:
+          maxScore = vegetableService.maxScoreLevel2;
+          break;
+        case 3:
+          maxScore = vegetableService.maxScoreLevel3;
+          break;
+        case 4:
+          maxScore = vegetableService.maxScoreLevel4;
+          break;
+      }
       Future.microtask(() => GameDialogs.showLevelCompletedDialog(
           context,
           score,
+          maxScore,
           level,
               () {
             ref.read(levelCompletedProvider.notifier).state = false;
+            vegetableService.infoLevelProvider(ref);
           },
         )
       );

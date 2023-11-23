@@ -16,22 +16,24 @@ class VegetableService{
   int currentLevel = 1;
   int currentIndex = 0;
   int score = 0;
-  //List<Season> selectedSeasons = [];
+  int scoreLevel1 = 0;
+  int scoreLevel2 = 0;
+  int scoreLevel3 = 0;
+  int scoreLevel4 = 0;
+  int maxScoreLevel1 = 0;
+  int maxScoreLevel2 = 0;
+  int maxScoreLevel3 = 0;
+  int maxScoreLevel4 = 0;
 
-  //!!!!!!!!
-  //Testmode: vegetablesLevelTest
-  // Vegetable get currentVegetable => vegetablesLevelTest[currentIndex];
-  // void defineTestVegetableLevel(){
-  //   if(!_isInitialized){
-  //   _isInitialized = true;
-  //   List<Vegetable> shuffledVegetables = List.from(vegetables);
-  //   shuffledVegetables.shuffle();
-  //   vegetablesLevelTest = shuffledVegetables;
-  //   }
-  // }
-  // //!!!!!!!
-
-  //Vegetable get currentVegetable => vegetables[currentIndex];
+  //Getters
+  int get maxScore1 => maxScoreLevel1;
+  int get maxScore2 => maxScoreLevel2;
+  int get maxScore3 => maxScoreLevel3;
+  int get maxScore4 => maxScoreLevel4;
+  int get score1 => scoreLevel1;
+  int get score2 => scoreLevel2;
+  int get score3 => scoreLevel3;
+  int get score4 => scoreLevel4;
 
   Vegetable get currentVegetable {
     List<Vegetable> currentLevelVegetables;
@@ -51,6 +53,9 @@ class VegetableService{
       default:
         currentLevelVegetables = [];
     }
+    if(currentLevelVegetables.isEmpty){
+      currentLevelVegetables = vegetablesLevel1;
+    }
     return currentLevelVegetables.isNotEmpty ? currentLevelVegetables[currentIndex] : throw Exception("Level is empty");
   }
 
@@ -63,6 +68,22 @@ class VegetableService{
       vegetablesLevel2 = shuffledVegetables.skip(perLevel).take(perLevel).toList();
       vegetablesLevel3 = shuffledVegetables.skip(2 * perLevel).take(perLevel).toList();
       vegetablesLevel4 = shuffledVegetables.skip(3 * perLevel).take(perLevel).toList();
+      calculateMaxScorePerLevel();
+    }
+  }
+
+  void calculateMaxScorePerLevel(){
+    for (Vegetable vegetable in vegetablesLevel1){
+      maxScoreLevel1 += vegetable.seasons.length * 10;
+    }
+    for (Vegetable vegetable in vegetablesLevel2){
+      maxScoreLevel2 += vegetable.seasons.length * 10;
+    }
+    for (Vegetable vegetable in vegetablesLevel3){
+      maxScoreLevel3 += vegetable.seasons.length * 10;
+    }
+    for (Vegetable vegetable in vegetablesLevel4){
+      maxScoreLevel4 += vegetable.seasons.length * 10;
     }
   }
 
@@ -76,16 +97,6 @@ class VegetableService{
     }
   }
 
-  // void nextVegetable(WidgetRef ref) {
-  //   if (currentIndex < vegetables.length - 1) {
-  //     currentIndex++;
-  //     ref.read(selectedSeasonsProvider.notifier).state = [];
-  //     ref.read(seasonCheckResultsProvider.notifier).state = {};
-  //     ref.read(seasonPointsProvider.notifier).state = {};
-  //
-  //   }
-  // }
-
   void updateSeasonCheckResults(WidgetRef ref) {
     Map<Season, bool> checkResults = {};
     for (var season in Season.values) {
@@ -93,7 +104,6 @@ class VegetableService{
     }
     ref.read(seasonCheckResultsProvider.notifier).state = checkResults;
   }
-
 
   Map<Season, int> calculateSeasonPoints(WidgetRef ref) {
     var selectedSeasons = ref.read(selectedSeasonsProvider);
@@ -156,15 +166,28 @@ class VegetableService{
         }
         currentLevel++;
         currentIndex = 0;
-        ref.read(levelProvider.notifier).state = currentLevel;
+
+        score = 0;
+
+
+        //ef.read(levelProvider.notifier).state = currentLevel;
         // ref.read(levelCompletedProvider.notifier).state = false;
         ref.read(selectedSeasonsProvider.notifier).state = [];
         ref.read(seasonCheckResultsProvider.notifier).state = {};
         ref.read(seasonPointsProvider.notifier).state = {};
       } else {
         //if all levels finished
+        currentLevel++;
+        //ref.read(levelProvider.notifier).state = currentLevel;
+        ref.read(levelCompletedProvider.notifier).state = true;
+
       }
     }
+  }
+
+  void infoLevelProvider(WidgetRef ref){
+    ref.read(levelProvider.notifier).state = currentLevel;
+    ref.read(scoreProvider.notifier).state = 0;
   }
 
   bool isLevelCompleted() {
