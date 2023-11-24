@@ -164,13 +164,27 @@ class VegetableService{
         if (isLevelCompleted()) {
           ref.read(levelCompletedProvider.notifier).state = true;
         }
+        switch (currentLevel) {
+          case 1:
+            scoreLevel1 = score;
+            break;
+          case 2:
+            scoreLevel2 = score;
+            break;
+          case 3:
+            scoreLevel3 = score;
+            break;
+          case 4:
+            scoreLevel4 = score;
+            break;
+        }
         currentLevel++;
         currentIndex = 0;
 
         score = 0;
 
 
-        //ef.read(levelProvider.notifier).state = currentLevel;
+        //ref.read(levelProvider.notifier).state = currentLevel;
         // ref.read(levelCompletedProvider.notifier).state = false;
         ref.read(selectedSeasonsProvider.notifier).state = [];
         ref.read(seasonCheckResultsProvider.notifier).state = {};

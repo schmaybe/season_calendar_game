@@ -36,17 +36,21 @@ class GameRoot extends ConsumerWidget {
           maxScore = vegetableService.maxScoreLevel4;
           break;
       }
-      Future.microtask(() => GameDialogs.showLevelCompletedDialog(
-          context,
-          score,
-          maxScore,
-          level,
-              () {
-            ref.read(levelCompletedProvider.notifier).state = false;
-            vegetableService.infoLevelProvider(ref);
-          },
-        )
-      );
+      if (level <= 3) {
+        Future.microtask(() =>
+            GameDialogs.showLevelCompletedDialog(
+              context,
+              ref,
+              score,
+              maxScore,
+              level,
+                  () {
+                ref.read(levelCompletedProvider.notifier).state = false;
+                vegetableService.infoLevelProvider(ref);
+              },
+            )
+        );
+      }
     }
 
     return Scaffold(
