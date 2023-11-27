@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 Widget buildSeasonScoreIndicator(int points) {
   return Container(
-    padding: const EdgeInsets.all(4),
+    padding: const EdgeInsets.all(2),
     decoration: BoxDecoration(
       color: points >= 0 ? Colors.green : Colors.red,
       borderRadius: BorderRadius.circular(4),

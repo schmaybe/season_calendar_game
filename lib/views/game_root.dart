@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../custom_widgets/score.dart';
+import 'package:season_calendar_game/views/start_screen.dart';
 import '../model/vegetable.dart';
 import '../providers/providers.dart';
+import '../shared/custom_widgets/constants.dart';
+import '../shared/custom_widgets/score.dart';
 import 'game_dialogs.dart';
 
 class GameRoot extends ConsumerWidget {
@@ -36,7 +38,7 @@ class GameRoot extends ConsumerWidget {
           maxScore = vegetableService.maxScoreLevel4;
           break;
       }
-      if (level <= 3) {
+      if (level <= 4) {
         Future.microtask(() =>
             GameDialogs.showLevelCompletedDialog(
               context,
@@ -55,8 +57,37 @@ class GameRoot extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.grey,
-        title: Text("Score: $score               Level: $level"),
+        backgroundColor: colorGameTheme2,
+        elevation: 0,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Expanded(
+              flex: 3,
+              child: Text("Score $score"),
+            ),
+            Expanded(
+              flex: 3,
+              child: Text("Level $level"),
+            ),
+            Expanded(
+              flex: 2,
+              child: Text("Timer"),
+            ),
+            Expanded(
+              flex: 1,
+              child: IconButton(
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) => const StartScreen(),
+                    ),
+                  );
+                },
+                icon: const Icon(Icons.home),
+              ),
+            ),
+          ],
+        ),
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -74,8 +105,8 @@ class GameRoot extends ConsumerWidget {
           children: [
             Center(
                 child: SizedBox(
-                  width: 500,
-                  height: 350,
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height*0.5,
                   child: Image.asset(vegetableService.currentVegetable.imgPath),
                 ),
             ),
@@ -93,9 +124,9 @@ class GameRoot extends ConsumerWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: Season.values.map((season) {
-                Color buttonColor = selectedSeasons.contains(season) ? Colors.green : Colors.grey;
+                Color buttonColor = selectedSeasons.contains(season) ? Colors.green : colorGameTheme2;
                 if (seasonCheckResults.isNotEmpty) {
-                  buttonColor = seasonCheckResults[season]! ? Colors.green : Colors.grey;
+                  buttonColor = seasonCheckResults[season]! ? Colors.green : colorGameTheme2;
                 }
                 return Padding(
                   padding: const EdgeInsets.only(top: 20),
@@ -103,10 +134,12 @@ class GameRoot extends ConsumerWidget {
                     children: [
                       if (seasonPoints.containsKey(season))
                         buildSeasonScoreIndicator(seasonPoints[season]!),
+                      SizedBox(height: MediaQuery.of(context).size.height*0.02),
                       SizedBox(
-                        width: 70,
-                        height: 100,
+                        width: MediaQuery.of(context).size.width*0.2,
+                        height: MediaQuery.of(context).size.height*0.11,
                         child: FloatingActionButton(
+                          heroTag: null,
                           onPressed: () => vegetableService.toggleSeason(season, ref),
                           backgroundColor: buttonColor,
                           child: Text(season.toString().split('.').last),
@@ -117,26 +150,24 @@ class GameRoot extends ConsumerWidget {
                 );
               }).toList(),
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  width: 50,
-                  height: 80,
-                  child: FloatingActionButton(
-                    onPressed: (){
-                      if (seasonCheckResults.isNotEmpty) {
-                      vegetableService.nextVegetable(ref);
-                      } else {
-                      vegetableService.updateSeasonCheckResults(ref);
-                      vegetableService.calculateAndUpdateSeasonPoints(ref);
-                      }
-                    },
-                    backgroundColor: Colors.grey,
-                    child: const Text("GO"),
-                  ),
+            SizedBox(height: MediaQuery.of(context).size.height*0.07),
+            ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor: const MaterialStatePropertyAll(colorGameTheme2),
+                elevation: const MaterialStatePropertyAll(0),
+                padding: MaterialStateProperty.all(
+                  EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.3, vertical: 12),
                 ),
-              ],
+              ),
+              onPressed: (){
+                if (seasonCheckResults.isNotEmpty) {
+                vegetableService.nextVegetable(ref);
+                } else {
+                vegetableService.updateSeasonCheckResults(ref);
+                vegetableService.calculateAndUpdateSeasonPoints(ref);
+                }
+              },
+              child: const Text("GO"),
             ),
           ],
         ),

@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:season_calendar_game/views/start_screen.dart';
-import '../custom_widgets/animated_star.dart';
 import '../providers/providers.dart';
+import '../shared/custom_widgets/animated_star.dart';
+import '../shared/custom_widgets/constants.dart';
 
 class GameDialogs {
 
@@ -24,7 +25,7 @@ class GameDialogs {
                 ),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Colors.grey,
+                    color: colorGameTheme,
                     borderRadius: BorderRadius.circular(20.0),
                     // image: const DecorationImage(
                     //   fit: BoxFit.cover,
@@ -144,7 +145,7 @@ class GameDialogs {
                 ),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Colors.grey,
+                    color: colorGameTheme,
                     borderRadius: BorderRadius.circular(20.0),
                     // image: const DecorationImage(
                     //   fit: BoxFit.cover,
@@ -186,43 +187,183 @@ class GameDialogs {
                         },
                         onRatingUpdate: (double value) {},
                       ),
-                      const SizedBox(height: 50),
-                      Text(
-                        "Your score level1: ${vegetableService.scoreLevel1} (max. ${vegetableService.maxScoreLevel1})",
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+                      const SizedBox(height: 30),
+                      Row(
+                        children: [
+                          const Expanded(
+                            flex: 0,
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 45.0),
+                              child: Text(
+                                "level1: ",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: Text(
+                              "${vegetableService.scoreLevel1}",
+                              style: const TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 0,
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 45.0),
+                              child: Text(
+                                "(max. ${vegetableService.maxScoreLevel1})",
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                       const SizedBox(height: 10),
-                      Text(
-                        "Your score level2: ${vegetableService.scoreLevel2} (max. ${vegetableService.maxScoreLevel2})",
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+                      Row(
+                        children: [
+                          const Expanded(
+                            flex: 0,
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 45.0),
+                              child: Text(
+                                "level2: ",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: Text(
+                              "${vegetableService.scoreLevel2}",
+                              style: const TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 0,
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 45.0),
+                              child: Text(
+                                "(max. ${vegetableService.maxScoreLevel2})",
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                       const SizedBox(height: 10),
-                      Text(
-                        "Your score level3: ${vegetableService.scoreLevel3} (max. ${vegetableService.maxScoreLevel3})",
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+                      Row(
+                        children: [
+                          const Expanded(
+                            flex: 0,
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 45.0),
+                              child: Text(
+                                "level3: ",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: Text(
+                              "${vegetableService.scoreLevel3}",
+                              style: const TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 0,
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 45.0),
+                              child: Text(
+                                "(max. ${vegetableService.maxScoreLevel3})",
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                       const SizedBox(height: 10),
-                      Text(
-                        "Your score level4: ${vegetableService.scoreLevel4} (max. ${vegetableService.maxScoreLevel4})",
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+                      Row(
+                        children: [
+                          const Expanded(
+                            flex: 0,
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 45.0),
+                              child: Text(
+                                "level4: ",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: Text(
+                              "${vegetableService.scoreLevel4}",
+                              style: const TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 0,
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 45.0),
+                              child: Text(
+                                "(max. ${vegetableService.maxScoreLevel4})",
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 30),
                       TextButton(
                         style: ButtonStyle(
                           elevation: MaterialStateProperty.all(
@@ -240,12 +381,12 @@ class GameDialogs {
                           ),
                         ),
                         onPressed: () {
-                            Navigator.of(context).pop();
-                            Navigator.of(context).pop();
-                            Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const StartScreen(), // Ihr StartScreen-Widget
-                              ),
-                            );
+                          Navigator.of(context).pop();
+                          Navigator.of(context).pop();
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const StartScreen(), // Ihr StartScreen-Widget
+                            ),
+                          );
                         },
                       ),
                     ],

@@ -25,16 +25,6 @@ class VegetableService{
   int maxScoreLevel3 = 0;
   int maxScoreLevel4 = 0;
 
-  //Getters
-  int get maxScore1 => maxScoreLevel1;
-  int get maxScore2 => maxScoreLevel2;
-  int get maxScore3 => maxScoreLevel3;
-  int get maxScore4 => maxScoreLevel4;
-  int get score1 => scoreLevel1;
-  int get score2 => scoreLevel2;
-  int get score3 => scoreLevel3;
-  int get score4 => scoreLevel4;
-
   Vegetable get currentVegetable {
     List<Vegetable> currentLevelVegetables;
     switch (currentLevel) {
@@ -180,7 +170,6 @@ class VegetableService{
         }
         currentLevel++;
         currentIndex = 0;
-
         score = 0;
 
 
@@ -192,6 +181,7 @@ class VegetableService{
       } else {
         //if all levels finished
         currentLevel++;
+        scoreLevel4 = score;
         //ref.read(levelProvider.notifier).state = currentLevel;
         ref.read(levelCompletedProvider.notifier).state = true;
 
@@ -223,7 +213,30 @@ class VegetableService{
     return currentIndex >= currentLevelVegetables.length - 1;
   }
 
-
+  void resetGame(WidgetRef ref){
+    ref.read(selectedSeasonsProvider.notifier).state = [];
+    ref.read(seasonCheckResultsProvider.notifier).state = {};
+    ref.read(seasonPointsProvider.notifier).state = {};
+    ref.read(levelCompletedProvider.notifier).state = false;
+    ref.read(levelProvider.notifier).state = 1;
+    ref.read(scoreProvider.notifier).state = 0;
+    currentLevel = 1;
+    currentIndex = 0;
+    score = 0;
+    _isInitialized = false;
+    vegetablesLevel1 = [];
+    vegetablesLevel2 = [];
+    vegetablesLevel3 = [];
+    vegetablesLevel4 = [];
+    scoreLevel1 = 0;
+    scoreLevel2 = 0;
+    scoreLevel3 = 0;
+    scoreLevel4 = 0;
+    maxScoreLevel1 = 0;
+    maxScoreLevel2 = 0;
+    maxScoreLevel3 = 0;
+    maxScoreLevel4 = 0;
+  }
 
 
 

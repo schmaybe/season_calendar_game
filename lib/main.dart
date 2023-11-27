@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:season_calendar_game/views/game_root.dart';
+import 'package:season_calendar_game/views/start_screen.dart';
 
 void main() {
   runApp(
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       statusBarColor: Colors.transparent,
     ));
     return const MaterialApp(
-      home: GameRoot(),
+      home: StartScreen(),
     );
   }
 }
