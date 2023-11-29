@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:season_calendar_game/views/game_root.dart';
 import '../providers/providers.dart';
-import '../shared/custom_widgets/constants.dart';
+import '../shared/constants.dart';
 
 class StartScreen extends ConsumerWidget {
   const StartScreen({super.key});
@@ -46,10 +45,9 @@ class StartScreen extends ConsumerWidget {
                 ),
               ),
               onPressed: () {
+                ref.read(timerHandlerProvider).resetCurrentLvl();
                 ref.read(vegetableServiceProvider).resetGame(ref);
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) => const GameRoot(),
-                ));
+                Navigator.of(context).pushNamed("/gameRoot");
               },
               child: const Text(
                 "Gemüse",

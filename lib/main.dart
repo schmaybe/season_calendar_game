@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:season_calendar_game/views/game_root.dart';
 import 'package:season_calendar_game/views/start_screen.dart';
 
 void main() {
@@ -18,7 +19,12 @@ class MyApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
     ));
-    return const MaterialApp(
+    return MaterialApp(
+      initialRoute: "/startScreen",
+      routes: {
+        "/startScreen": (context) => StartScreen(),
+        "/gameRoot": (context) => GameRoot(),
+      },
       home: StartScreen(),
     );
   }

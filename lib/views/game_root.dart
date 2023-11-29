@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:season_calendar_game/views/start_screen.dart';
 import '../model/vegetable.dart';
 import '../providers/providers.dart';
-import '../shared/custom_widgets/constants.dart';
+import '../shared/constants.dart';
 import '../shared/custom_widgets/score.dart';
-import 'game_dialogs.dart';
 
 class GameRoot extends ConsumerWidget {
   const GameRoot({super.key});
-
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -20,43 +17,16 @@ class GameRoot extends ConsumerWidget {
     final score = ref.watch(scoreProvider);
     final level = ref.watch(levelProvider);
     final seasonPoints = ref.watch(seasonPointsProvider);
-    final levelCompleted = ref.watch(levelCompletedProvider);
+    final timerHandler = ref.read(timerHandlerProvider);
+    final levelHandler = ref.read(levelCompletedProvider2);
+    final timerValue = ref.watch(timerServiceProvider);
 
-    if (levelCompleted) {
-      int maxScore = 0;
-      switch (level) {
-        case 1:
-          maxScore = vegetableService.maxScoreLevel1;
-          break;
-        case 2:
-          maxScore = vegetableService.maxScoreLevel2;
-          break;
-        case 3:
-          maxScore = vegetableService.maxScoreLevel3;
-          break;
-        case 4:
-          maxScore = vegetableService.maxScoreLevel4;
-          break;
-      }
-      if (level <= 4) {
-        Future.microtask(() =>
-            GameDialogs.showLevelCompletedDialog(
-              context,
-              ref,
-              score,
-              maxScore,
-              level,
-                  () {
-                ref.read(levelCompletedProvider.notifier).state = false;
-                vegetableService.infoLevelProvider(ref);
-              },
-            )
-        );
-      }
-    }
+    timerHandler.handleTimer(context, ref);
+    levelHandler.handleLevelCompleted(context, ref);
 
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: colorGameTheme2,
         elevation: 0,
         title: Row(
@@ -72,16 +42,15 @@ class GameRoot extends ConsumerWidget {
             ),
             Expanded(
               flex: 2,
-              child: Text("Timer"),
+              child: Text("$timerValue"),
             ),
             Expanded(
               flex: 1,
               child: IconButton(
                 onPressed: () {
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => const StartScreen(),
-                    ),
-                  );
+                  ref.read(timerServiceProvider.notifier).stopTimer();
+                  Future.microtask(() => ref.read(timerServiceProvider.notifier).resetTimer());
+                  Navigator.popUntil(context, ModalRoute.withName("/startScreen"));
                 },
                 icon: const Icon(Icons.home),
               ),
@@ -150,7 +119,7 @@ class GameRoot extends ConsumerWidget {
                 );
               }).toList(),
             ),
-            SizedBox(height: MediaQuery.of(context).size.height*0.07),
+            SizedBox(height: MediaQuery.of(context).size.height*0.06),
             ElevatedButton(
               style: ButtonStyle(
                 backgroundColor: const MaterialStatePropertyAll(colorGameTheme2),
@@ -169,6 +138,7 @@ class GameRoot extends ConsumerWidget {
               },
               child: const Text("GO"),
             ),
+            SizedBox(height: MediaQuery.of(context).size.height*0.02),
           ],
         ),
       ),

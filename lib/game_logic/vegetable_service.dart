@@ -173,7 +173,7 @@ class VegetableService{
         score = 0;
 
 
-        //ref.read(levelProvider.notifier).state = currentLevel;
+        // ref.read(levelProvider.notifier).state = currentLevel;
         // ref.read(levelCompletedProvider.notifier).state = false;
         ref.read(selectedSeasonsProvider.notifier).state = [];
         ref.read(seasonCheckResultsProvider.notifier).state = {};
@@ -190,8 +190,9 @@ class VegetableService{
   }
 
   void infoLevelProvider(WidgetRef ref){
-    ref.read(levelProvider.notifier).state = currentLevel;
-    ref.read(scoreProvider.notifier).state = 0;
+    Future.microtask(() => ref.read(levelProvider.notifier).state = currentLevel);
+    Future.microtask(() => ref.read(scoreProvider.notifier).state = 1);
+    Future.microtask(() => ref.read(scoreProvider.notifier).state = 0);
   }
 
   bool isLevelCompleted() {
@@ -237,6 +238,8 @@ class VegetableService{
     maxScoreLevel3 = 0;
     maxScoreLevel4 = 0;
   }
+
+
 
 
 

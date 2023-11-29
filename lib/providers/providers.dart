@@ -1,4 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../game_logic/level_completed.dart';
+import '../game_logic/timer_service.dart';
 import '../game_logic/vegetable_service.dart';
 import '../model/vegetable.dart';
 
@@ -21,6 +23,10 @@ final levelProvider = StateProvider<int>((ref) => 1);
 final seasonPointsProvider = StateProvider<Map<Season, int>>((ref) => {});
 
 final levelCompletedProvider = StateProvider<bool>((ref) => false);
+final levelCompletedProvider2 = Provider((ref) => LevelCompletedHandler(ref));
 
+final timerServiceProvider = StateNotifierProvider<TimerService, int>((ref) => TimerService());
+
+final timerHandlerProvider = Provider((ref) => TimerHandler(ref));
 
 
