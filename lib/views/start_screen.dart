@@ -11,26 +11,33 @@ class StartScreen extends ConsumerWidget {
     return Scaffold(
       body: Container(
         width: MediaQuery.of(context).size.width,
-        decoration: const BoxDecoration(
-          color: colorGameTheme,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            image: const AssetImage("assets/app/vegetable_stripe.png"),
+            colorFilter: ColorFilter.mode(
+              Colors.grey.withOpacity(1),
+              BlendMode.darken,
+            ),
+          ),
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(height: MediaQuery.of(context).size.height*0.1),
             const Text(
-              "Wann wächst was ???",
+              "Wann wächst was ??",
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 45,
+                fontSize: 50,
                 fontWeight: FontWeight.bold,
                 fontFamily: fontFamily,
               ),
             ),
-            SizedBox(height: MediaQuery.of(context).size.height*0.1),
+            SizedBox(height: MediaQuery.of(context).size.height*0.2),
             ElevatedButton(
               style: ButtonStyle(
-                backgroundColor: const MaterialStatePropertyAll(colorGameTheme),
+                backgroundColor: const MaterialStatePropertyAll(Colors.transparent),
                 elevation: const MaterialStatePropertyAll(0),
                 padding: MaterialStateProperty.all(
                   const EdgeInsets.symmetric(horizontal: 70, vertical: 10),
@@ -45,7 +52,7 @@ class StartScreen extends ConsumerWidget {
                 ),
               ),
               onPressed: () {
-                ref.read(timerHandlerProvider).resetCurrentLvl();
+                ref.read(timerHandlerProviderV1).resetCurrentLvl();
                 ref.read(vegetableServiceProvider).resetGame(ref);
                 Navigator.of(context).pushNamed("/gameRoot");
               },
@@ -57,13 +64,13 @@ class StartScreen extends ConsumerWidget {
                 ),
               ),
             ),
-            SizedBox(height: MediaQuery.of(context).size.height*0.04),
+            SizedBox(height: MediaQuery.of(context).size.height*0.06),
             ElevatedButton(
               style: ButtonStyle(
-                backgroundColor: const MaterialStatePropertyAll(colorGameTheme),
+                backgroundColor: const MaterialStatePropertyAll(Colors.transparent),
                 elevation: const MaterialStatePropertyAll(0),
                 padding: MaterialStateProperty.all(
-                  const EdgeInsets.symmetric(horizontal: 93, vertical: 10),
+                  const EdgeInsets.symmetric(horizontal: 65, vertical: 10),
                 ),
                 shape: MaterialStateProperty.all(
                   const RoundedRectangleBorder(
@@ -76,52 +83,12 @@ class StartScreen extends ConsumerWidget {
               ),
               onPressed: () {},
               child: const Text(
-                "Obst",
+                "Optionen",
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 30,
                 ),
               ),
-            ),
-            SizedBox(height: MediaQuery.of(context).size.height*0.04),
-            ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: const MaterialStatePropertyAll(colorGameTheme),
-                elevation: const MaterialStatePropertyAll(0),
-                padding: MaterialStateProperty.all(
-                  const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                ),
-                shape: MaterialStateProperty.all(
-                  const RoundedRectangleBorder(
-                    side: BorderSide(
-                      color: Colors.white,
-                      width: 2,
-                    ),
-                  ),
-                ),
-              ),
-              onPressed: () {},
-              child: const Text(
-                "Obst & Gemüse",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 30,
-                ),
-              ),
-            ),
-            Row(
-              children: [
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 250,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      fit: BoxFit.fill,
-                      image: AssetImage("assets/app/trees.png"),
-                    ),
-                  ),
-                ),
-              ],
             ),
           ],
         ),

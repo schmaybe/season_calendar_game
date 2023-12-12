@@ -3,7 +3,7 @@ import '../../shared/constants.dart';
 
 class GameDialogLevelFailed {
 
-  static void showLevelFailedDialog(BuildContext context, int level, int score, int maxScore, VoidCallback timerExpired) {
+  static void showLevelFailedDialog(BuildContext context, int level, int score, int maxScore, String text, VoidCallback timerExpired) {
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -31,9 +31,9 @@ class GameDialogLevelFailed {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      const Text(
-                        "Time has expired :(",
-                        style: TextStyle(
+                      Text(
+                        text,
+                        style: const TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,

@@ -239,13 +239,18 @@ class VegetableService{
     maxScoreLevel4 = 0;
   }
 
-
-
-
-
-
-
-
+  String getImageForSeason(Season season) {
+    switch (season) {
+      case Season.spring:
+        return 'assets/app/blossom.png';
+      case Season.summer:
+        return 'assets/app/sun.png';
+      case Season.autumn:
+        return 'assets/app/leaf.png';
+      case Season.winter:
+        return 'assets/app/snowflake.png';
+    }
+  }
 
 }
 

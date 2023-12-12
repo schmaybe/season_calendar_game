@@ -9,7 +9,7 @@ class Vegetable {
 enum Season{spring, summer, autumn, winter}
 
 List<Vegetable> vegetables = [
-  Vegetable(name: "Artischocken", imgPath: "assets/vegetables/artischocken.png", seasons: [Season.summer]),
+  Vegetable(name: "Artischocken", imgPath: "assets/vegetables/artischocke.png", seasons: [Season.summer]),
   Vegetable(name: "Aubergine", imgPath: "assets/vegetables/aubergine.png", seasons: [Season.summer, Season.autumn]),
   Vegetable(name: "Blumenkohl", imgPath: "assets/vegetables/blumenkohl.png", seasons: [Season.summer, Season.autumn]),
   Vegetable(name: "Bohnen", imgPath: "assets/vegetables/bohnen.png", seasons: [Season.summer, Season.autumn]),
@@ -39,7 +39,7 @@ List<Vegetable> vegetables = [
   Vegetable(name: "Rosenkohl", imgPath: "assets/vegetables/rosenkohl.png", seasons: [Season.autumn, Season.winter]),
   Vegetable(name: "Rote Beete/Rote Rüben", imgPath: "assets/vegetables/rote_beete.png", seasons: [Season.spring, Season.summer, Season.autumn, Season.winter]),
   Vegetable(name: "Rotkohl", imgPath: "assets/vegetables/rotkohl.png", seasons: [Season.spring, Season.summer, Season.autumn, Season.winter]),
-  Vegetable(name: "Rucula", imgPath: "assets/vegetables/ruculalol.png", seasons: [Season.spring, Season.summer, Season.autumn, Season.winter]),
+  Vegetable(name: "Rucula", imgPath: "assets/vegetables/rucola.png", seasons: [Season.spring, Season.summer, Season.autumn, Season.winter]),
   Vegetable(name: "Schwarzwurzel", imgPath: "assets/vegetables/schwarzwurzel.png", seasons: [Season.spring, Season.autumn, Season.winter]),
   Vegetable(name: "Spargel", imgPath: "assets/vegetables/spargel.png", seasons: [Season.spring, Season.summer]),
   Vegetable(name: "Spinat", imgPath: "assets/vegetables/spinat.png", seasons: [Season.spring, Season.summer, Season.autumn]),

@@ -17,12 +17,14 @@ class GameRoot extends ConsumerWidget {
     final score = ref.watch(scoreProvider);
     final level = ref.watch(levelProvider);
     final seasonPoints = ref.watch(seasonPointsProvider);
-    final timerHandler = ref.read(timerHandlerProvider);
+    final timerHandlerV1 = ref.read(timerHandlerProviderV1);
+    final timerHandlerV2 = ref.read(timerHandlerProviderV2);
     final levelHandler = ref.read(levelCompletedProvider2);
     final timerValue = ref.watch(timerServiceProvider);
-
-    timerHandler.handleTimer(context, ref);
+    final levelCompleted = ref.watch(levelCompletedProvider);
+    
     levelHandler.handleLevelCompleted(context, ref);
+    timerHandlerV2.handleTimer(context, ref);
 
     return Scaffold(
       appBar: AppBar(
@@ -48,8 +50,9 @@ class GameRoot extends ConsumerWidget {
               flex: 1,
               child: IconButton(
                 onPressed: () {
-                  ref.read(timerServiceProvider.notifier).stopTimer();
-                  Future.microtask(() => ref.read(timerServiceProvider.notifier).resetTimer());
+                  // ref.read(timerServiceProvider.notifier).stopTimer();
+                  timerHandlerV2.resetTimer();
+                  //Future.microtask(() => ref.read(timerServiceProvider.notifier).resetTimer());
                   Navigator.popUntil(context, ModalRoute.withName("/startScreen"));
                 },
                 icon: const Icon(Icons.home),
@@ -62,9 +65,9 @@ class GameRoot extends ConsumerWidget {
         decoration: BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.cover,
-            image: const AssetImage("assets/app/wheat.jpg"),
+            image: const AssetImage("assets/app/stripes2.png"),
             colorFilter: ColorFilter.mode(
-              Colors.grey.withOpacity(0.3),
+              Colors.grey.withOpacity(1),
               BlendMode.darken,
             ),
           ),
@@ -93,9 +96,9 @@ class GameRoot extends ConsumerWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: Season.values.map((season) {
-                Color buttonColor = selectedSeasons.contains(season) ? Colors.green : colorGameTheme2;
+                Color buttonColor = selectedSeasons.contains(season) ? Colors.white.withOpacity(0.4) : Colors.transparent;
                 if (seasonCheckResults.isNotEmpty) {
-                  buttonColor = seasonCheckResults[season]! ? Colors.green : colorGameTheme2;
+                  buttonColor = seasonCheckResults[season]! ? Colors.white.withOpacity(0.4) : Colors.transparent;
                 }
                 return Padding(
                   padding: const EdgeInsets.only(top: 20),
@@ -107,12 +110,34 @@ class GameRoot extends ConsumerWidget {
                       SizedBox(
                         width: MediaQuery.of(context).size.width*0.2,
                         height: MediaQuery.of(context).size.height*0.11,
-                        child: FloatingActionButton(
-                          heroTag: null,
+                        child: ElevatedButton(
                           onPressed: () => vegetableService.toggleSeason(season, ref),
-                          backgroundColor: buttonColor,
-                          child: Text(season.toString().split('.').last),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: buttonColor,
+                            shadowColor: Colors.transparent,
+                            elevation: 0,
+                            padding: EdgeInsets.zero,
+                            fixedSize: const Size(70, 70),
+                            tapTargetSize: MaterialTapTargetSize.padded,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                          ),
+                          child: Container(
+                            width: 55,
+                            height: 55,
+                            child: Image.asset(
+                              vegetableService.getImageForSeason(season),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                         ),
+                        // child: FloatingActionButton(
+                        //   heroTag: null,
+                        //   onPressed: () => vegetableService.toggleSeason(season, ref),
+                        //   backgroundColor: buttonColor,
+                        //   child: Text(season.toString().split('.').last),
+                        // ),
                       ),
                     ],
                   ),
@@ -131,7 +156,14 @@ class GameRoot extends ConsumerWidget {
               onPressed: (){
                 if (seasonCheckResults.isNotEmpty) {
                 vegetableService.nextVegetable(ref);
+                //start timer for next vegetable
+                if(!levelCompleted){
+                  timerHandlerV2.startTimer();
+                }
                 } else {
+                //stop timer for current vegetable
+                timerHandlerV2.stopTimer();
+                //check values
                 vegetableService.updateSeasonCheckResults(ref);
                 vegetableService.calculateAndUpdateSeasonPoints(ref);
                 }
