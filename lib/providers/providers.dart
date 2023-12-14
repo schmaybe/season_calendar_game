@@ -4,6 +4,7 @@ import '../game_logic/timer/timer_handler_v1.dart';
 import '../game_logic/timer/timer_handler_v2.dart';
 import '../game_logic/timer/timer_service.dart';
 import '../game_logic/vegetable_service.dart';
+import '../model/option.dart';
 import '../model/vegetable.dart';
 
 final vegetableServiceProvider = Provider<VegetableService>((ref) {
@@ -32,5 +33,7 @@ final timerServiceProvider = StateNotifierProvider<TimerService, int>((ref) => T
 final timerHandlerProviderV1 = Provider((ref) => TimerHandlerV1(ref));
 
 final timerHandlerProviderV2 = Provider((ref) => TimerHandlerV2(ref));
+
+final difficultyProvider = StateProvider<Difficulty>((ref) => Difficulty.leicht);
 
 

@@ -1,0 +1,1 @@
+enum Difficulty {leicht, mittel, schwer}

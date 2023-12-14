@@ -65,9 +65,9 @@ class GameRoot extends ConsumerWidget {
         decoration: BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.cover,
-            image: const AssetImage("assets/app/stripes2.png"),
+            image: const AssetImage("assets/app/background2.jpg"),
             colorFilter: ColorFilter.mode(
-              Colors.grey.withOpacity(1),
+              Colors.grey.shade700.withOpacity(0.4),
               BlendMode.darken,
             ),
           ),

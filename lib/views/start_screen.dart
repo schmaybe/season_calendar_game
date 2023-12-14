@@ -81,7 +81,9 @@ class StartScreen extends ConsumerWidget {
                   ),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed("/optionScreen");
+              },
               child: const Text(
                 "Optionen",
                 style: TextStyle(

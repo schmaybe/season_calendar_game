@@ -24,12 +24,15 @@ class GameDialogLevelCompleted {
                 ),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: colorGameTheme,
                     borderRadius: BorderRadius.circular(20.0),
-                    // image: const DecorationImage(
-                    //   fit: BoxFit.cover,
-                    //   image: AssetImage("assets/app/wheat.jpg"),
-                    // ),
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: const AssetImage("assets/app/background2.jpg"),
+                      colorFilter: ColorFilter.mode(
+                        Colors.grey.shade700.withOpacity(0.4),
+                        BlendMode.darken,
+                      ),
+                    ),
                   ),
                   width: MediaQuery
                       .of(context)
