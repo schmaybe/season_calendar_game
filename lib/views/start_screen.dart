@@ -52,7 +52,6 @@ class StartScreen extends ConsumerWidget {
                 ),
               ),
               onPressed: () {
-                ref.read(timerHandlerProviderV1).resetCurrentLvl();
                 ref.read(vegetableServiceProvider).resetGame(ref);
                 Navigator.of(context).pushNamed("/gameRoot");
               },

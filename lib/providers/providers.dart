@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../game_logic/level_handler.dart';
-import '../game_logic/timer/timer_handler_v1.dart';
-import '../game_logic/timer/timer_handler_v2.dart';
+import '../game_logic/timer/timer_handler.dart';
 import '../game_logic/timer/timer_service.dart';
 import '../game_logic/vegetable_service.dart';
 import '../model/option.dart';
@@ -30,9 +29,7 @@ final levelCompletedProvider2 = Provider((ref) => LevelCompletedHandler(ref));
 
 final timerServiceProvider = StateNotifierProvider<TimerService, int>((ref) => TimerService());
 
-final timerHandlerProviderV1 = Provider((ref) => TimerHandlerV1(ref));
-
-final timerHandlerProviderV2 = Provider((ref) => TimerHandlerV2(ref));
+final timerHandlerProvider = Provider((ref) => TimerHandler(ref));
 
 final difficultyProvider = StateProvider<Difficulty>((ref) => Difficulty.leicht);
 

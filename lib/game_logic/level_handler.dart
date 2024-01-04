@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:season_calendar_game/game_logic/timer/timer_handler_v2.dart';
 import 'package:season_calendar_game/game_logic/vegetable_service.dart';
 import 'package:season_calendar_game/shared/constants.dart';
 import '../providers/providers.dart';
@@ -29,8 +28,8 @@ class LevelCompletedHandler {
         if(score <= 0){
           Future.microtask(() => GameDialogLevelFailed.showLevelFailedDialog(context, level, score, maxScore, levelFailedScore,
                   (){
-                ref.read(timerHandlerProviderV2).timerExpired = true;
-                ref.read(timerHandlerProviderV2).startTimer();
+                ref.read(timerHandlerProvider).timerExpired = true;
+                ref.read(timerHandlerProvider).startTimer();
                 ref.read(levelCompletedProvider2).localLevelCompleted = true;
               }
           ));
@@ -48,7 +47,7 @@ class LevelCompletedHandler {
                     ref.read(levelCompletedProvider.notifier).state = false;
                     ref.read(levelCompletedProvider2).localLevelCompleted = true;
                     vegetableService.infoLevelProvider(ref);
-                    ref.read(timerHandlerProviderV2).startTimer();
+                    ref.read(timerHandlerProvider).startTimer();
                   },
                 ));
           }

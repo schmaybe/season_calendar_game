@@ -1,25 +1,29 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:season_calendar_game/model/option.dart';
 import '../../providers/providers.dart';
 import '../../shared/constants.dart';
 import '../../views/dialogs/level_failed.dart';
 
-class TimerHandlerV1 {
+class TimerHandler {
   final Ref ref;
-  int _lastStartedLevel = 0;
-  bool timerExpired = true;
+  bool timerStarted= false;
+  bool timerExpired= true;
 
-  TimerHandlerV1(this.ref);
+  bool vegetableResult = false;
+
+  TimerHandler(this.ref);
 
   void handleTimer(BuildContext context, WidgetRef ref) {
     final level = ref.watch(levelProvider);
     final score = ref.watch(scoreProvider);
     final levelCompleted = ref.watch(levelCompletedProvider);
     final timerValue = ref.watch(timerServiceProvider);
+    final dif = ref.watch(difficultyProvider);
 
-    if(level <= 4 && timerValue <= 30 && _lastStartedLevel != level){
-      _lastStartedLevel = level;
-      _startTimerForLevel(level);
+    if(level <= 4 && timerValue <= 30 && vegetableResult == false && timerStarted == false){
+      _startTimerForLevel(level, dif);
+      timerStarted = true;
     }
 
     if (timerValue == -1) {
@@ -29,47 +33,66 @@ class TimerHandlerV1 {
       }
     }
 
-    if (levelCompleted) {
-      _handleLevelCompletion(level);
-    }
+    if(levelCompleted){
+      stopTimer();
+      }
   }
 
-  void _startTimerForLevel(int level) {
-    int seconds = _getSecondsForLevel(level);
+  void _startTimerForLevel(int level, var dif) {
+    int seconds = _getSecondsForLevel(level, dif);
     Future.microtask(() => ref.read(timerServiceProvider.notifier).startTimer(seconds));
   }
 
-  int _getSecondsForLevel(int level) {
+  int _getSecondsForLevel(int level, var dif) {
+    int secStart = _getSecondsForDifficulty(dif);
     switch (level) {
-      case 1: return 30;
-      case 2: return 25;
-      case 3: return 20;
-      case 4: return 15;
-      default: return 30;
+      case 1: return secStart;
+      case 2: return secStart-5;
+      case 3: return secStart-10;
+      case 4: return secStart-15;
+      default: return 25;
+    }
+  }
+
+  int _getSecondsForDifficulty(var dif){
+    switch (dif){
+      case Difficulty.leicht: return 30;
+      case Difficulty.mittel: return 25;
+      case Difficulty.schwer: return 20;
+      default: return 35;
     }
   }
 
   void _handleTimerExpiration(BuildContext context, WidgetRef ref, int level, int score) {
     //Timer: stop
-    ref.read(timerServiceProvider.notifier).stopTimer();
-    _lastStartedLevel = level;
+    stopTimer();
     //Timer: reset
     Future.microtask(() => ref.read(timerServiceProvider.notifier).resetTimer());
     int maxScore = _getMaxScore(level, ref);
     Future.microtask(() => GameDialogLevelFailed.showLevelFailedDialog(context, level, score, maxScore, levelFailedTime,
             (){
-          ref.read(timerHandlerProviderV1).timerExpired = true;
+          ref.read(timerHandlerProvider).timerExpired = true;
+          vegetableResult = false;
+          timerStarted = false;
         }
     ));
   }
 
-  void _handleLevelCompletion(int level) {
+  void stopTimer() {
     //Timer: stop
     ref.read(timerServiceProvider.notifier).stopTimer();
+    vegetableResult = true;
   }
 
-  void resetCurrentLvl(){
-    _lastStartedLevel = 0;
+  void startTimer(){
+    vegetableResult = false;
+    timerStarted = false;
+  }
+
+  void resetTimer(){
+    ref.read(timerServiceProvider.notifier).stopTimer();
+    vegetableResult = false;
+    timerStarted = false;
   }
 
   int _getMaxScore(int level, WidgetRef ref) {

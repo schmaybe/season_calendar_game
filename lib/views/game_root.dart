@@ -17,14 +17,13 @@ class GameRoot extends ConsumerWidget {
     final score = ref.watch(scoreProvider);
     final level = ref.watch(levelProvider);
     final seasonPoints = ref.watch(seasonPointsProvider);
-    final timerHandlerV1 = ref.read(timerHandlerProviderV1);
-    final timerHandlerV2 = ref.read(timerHandlerProviderV2);
+    final timerHandler = ref.read(timerHandlerProvider);
     final levelHandler = ref.read(levelCompletedProvider2);
     final timerValue = ref.watch(timerServiceProvider);
     final levelCompleted = ref.watch(levelCompletedProvider);
     
     levelHandler.handleLevelCompleted(context, ref);
-    timerHandlerV2.handleTimer(context, ref);
+    timerHandler.handleTimer(context, ref);
 
     return Scaffold(
       appBar: AppBar(
@@ -51,7 +50,7 @@ class GameRoot extends ConsumerWidget {
               child: IconButton(
                 onPressed: () {
                   // ref.read(timerServiceProvider.notifier).stopTimer();
-                  timerHandlerV2.resetTimer();
+                  timerHandler.resetTimer();
                   //Future.microtask(() => ref.read(timerServiceProvider.notifier).resetTimer());
                   Navigator.popUntil(context, ModalRoute.withName("/startScreen"));
                 },
@@ -158,11 +157,11 @@ class GameRoot extends ConsumerWidget {
                 vegetableService.nextVegetable(ref);
                 //start timer for next vegetable
                 if(!levelCompleted){
-                  timerHandlerV2.startTimer();
+                  timerHandler.startTimer();
                 }
                 } else {
                 //stop timer for current vegetable
-                timerHandlerV2.stopTimer();
+                timerHandler.stopTimer();
                 //check values
                 vegetableService.updateSeasonCheckResults(ref);
                 vegetableService.calculateAndUpdateSeasonPoints(ref);

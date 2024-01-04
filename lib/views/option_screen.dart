@@ -43,9 +43,10 @@ class OptionScreen extends ConsumerWidget {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 10.0),
               child: Text(
-                "Hier kannst du die Schwierigkeit anpaasen: \n"
-                "leicht  &  mittel:  Zeit pro Gemüse \n"
-                "schwer          :  Zeit pro Level",
+                "Hier kannst du die Zeit pro Gemüse anpassen. Mit jedem Level hast du 5 Sekunden weniger Zeit: \n"
+                "leicht: Startzeit 30s\n"
+                "mittel: Startzeit 25s\n"
+                "schwer: Startzeit 20s    ",
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 35,
@@ -55,7 +56,7 @@ class OptionScreen extends ConsumerWidget {
                 textAlign: TextAlign.center, // Zentriert den Text
               ),
             ),
-            SizedBox(height: MediaQuery.of(context).size.height*0.1),
+            SizedBox(height: MediaQuery.of(context).size.height*0.04),
             SizedBox(
               width: MediaQuery.of(context).size.width*0.7,
               height: MediaQuery.of(context).size.height*0.12,
@@ -83,7 +84,7 @@ class OptionScreen extends ConsumerWidget {
                 ],
               ),
             ),
-            SizedBox(height: MediaQuery.of(context).size.height*0.15),
+            SizedBox(height: MediaQuery.of(context).size.height*0.08),
             ElevatedButton(
               style: ButtonStyle(
                 backgroundColor: const MaterialStatePropertyAll(Colors.transparent),
