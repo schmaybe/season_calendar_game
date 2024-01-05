@@ -39,7 +39,7 @@ List<Vegetable> vegetables = [
   Vegetable(name: "Rosenkohl", imgPath: "assets/vegetables/rosenkohl.png", seasons: [Season.autumn, Season.winter]),
   Vegetable(name: "Rote Beete/Rote Rüben", imgPath: "assets/vegetables/rote_beete.png", seasons: [Season.spring, Season.summer, Season.autumn, Season.winter]),
   Vegetable(name: "Rotkohl", imgPath: "assets/vegetables/rotkohl.png", seasons: [Season.spring, Season.summer, Season.autumn, Season.winter]),
-  Vegetable(name: "Rucula", imgPath: "assets/vegetables/rucola.png", seasons: [Season.spring, Season.summer, Season.autumn, Season.winter]),
+  Vegetable(name: "Rucola", imgPath: "assets/vegetables/rucola.png", seasons: [Season.spring, Season.summer, Season.autumn, Season.winter]),
   Vegetable(name: "Schwarzwurzel", imgPath: "assets/vegetables/schwarzwurzel.png", seasons: [Season.spring, Season.autumn, Season.winter]),
   Vegetable(name: "Spargel", imgPath: "assets/vegetables/spargel.png", seasons: [Season.spring, Season.summer]),
   Vegetable(name: "Spinat", imgPath: "assets/vegetables/spinat.png", seasons: [Season.spring, Season.summer, Season.autumn]),

@@ -3,7 +3,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../providers/providers.dart';
 import '../../shared/custom_widgets/animated_star.dart';
-import '../../shared/constants.dart';
+import '../end_screen.dart';
 
 class GameDialogShowResult {
 
@@ -12,6 +12,9 @@ class GameDialogShowResult {
     int totalScore = vegetableService.scoreLevel1+vegetableService.scoreLevel2+vegetableService.scoreLevel3+vegetableService.scoreLevel4;
     int totalMaxScore = vegetableService.maxScoreLevel1+vegetableService.maxScoreLevel2+vegetableService.maxScoreLevel3+vegetableService.maxScoreLevel4;
     double rating = (totalScore/totalMaxScore)*5;
+    int endScreenRating = rating.round();
+    print(rating);
+    print(endScreenRating);
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -261,8 +264,15 @@ class GameDialogShowResult {
                             letterSpacing: 4,
                           ),
                         ),
+                        // onPressed: () {
+                        //   Navigator.popUntil(context, ModalRoute.withName("/startScreen"));
+                        // },
                         onPressed: () {
-                          Navigator.popUntil(context, ModalRoute.withName("/startScreen"));
+                          Navigator.push(context,
+                            MaterialPageRoute(
+                              builder: (context) => EndScreen(initialRating: endScreenRating),
+                            ),
+                          );
                         },
                       ),
                     ],

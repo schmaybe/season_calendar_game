@@ -33,4 +33,3 @@ final timerHandlerProvider = Provider((ref) => TimerHandler(ref));
 
 final difficultyProvider = StateProvider<Difficulty>((ref) => Difficulty.leicht);
 
-

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:season_calendar_game/views/end_screen.dart';
 import 'package:season_calendar_game/views/game_root.dart';
 import 'package:season_calendar_game/views/option_screen.dart';
 import 'package:season_calendar_game/views/start_screen.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         "/startScreen": (context) => StartScreen(),
         "/gameRoot": (context) => GameRoot(),
         "/optionScreen": (context) => OptionScreen(),
+        // "/endScreen": (context) => EndScreen(initialRating: 5),
       },
       home: StartScreen(),
     );
