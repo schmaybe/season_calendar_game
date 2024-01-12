@@ -3,18 +3,25 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../providers/providers.dart';
 import '../../shared/custom_widgets/animated_star.dart';
+import '../../shared/media_query_size.dart';
 import '../end_screen.dart';
 
 class GameDialogShowResult {
 
   static void showResultDialog(BuildContext context, WidgetRef ref) {
     final vegetableService = ref.watch(vegetableServiceProvider);
+    final double mediaWidth = getMediaWidthSize();
+    final double mediaHeight = getMediaHeightSize();
     int totalScore = vegetableService.scoreLevel1+vegetableService.scoreLevel2+vegetableService.scoreLevel3+vegetableService.scoreLevel4;
     int totalMaxScore = vegetableService.maxScoreLevel1+vegetableService.maxScoreLevel2+vegetableService.maxScoreLevel3+vegetableService.maxScoreLevel4;
     double rating = (totalScore/totalMaxScore)*5;
     int endScreenRating = rating.round();
     print(rating);
     print(endScreenRating);
+    print(vegetableService.scoreLevel1);
+    print(vegetableService.scoreLevel2);
+    print(vegetableService.scoreLevel3);
+    print(vegetableService.scoreLevel4);
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -39,21 +46,21 @@ class GameDialogShowResult {
                       ),
                     ),
                   ),
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  height: 400,
+                  width: mediaWidth * 0.8,
+                  height: mediaHeight * 0.6,
                   padding: const EdgeInsets.all(16),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      const Text(
-                        "Result set:",
+                      Text(
+                        "Endergebnis:",
                         style: TextStyle(
-                          fontSize: 30,
+                          fontSize: mediaWidth*0.07,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
                       ),
-                      const SizedBox(height: 50),
+                      SizedBox(height: mediaHeight*0.02),
                       RatingBar.builder(
                         initialRating: rating,
                         ignoreGestures: true,
@@ -71,17 +78,17 @@ class GameDialogShowResult {
                         },
                         onRatingUpdate: (double value) {},
                       ),
-                      const SizedBox(height: 30),
+                      SizedBox(height: mediaHeight*0.04),
                       Row(
                         children: [
-                          const Expanded(
+                          Expanded(
                             flex: 0,
                             child: Padding(
-                              padding: EdgeInsets.only(left: 45.0),
+                              padding: EdgeInsets.only(left: mediaWidth*0.04),
                               child: Text(
-                                "level1: ",
+                                "Level 1: ",
                                 style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: mediaWidth*0.05,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
                                 ),
@@ -92,8 +99,8 @@ class GameDialogShowResult {
                             flex: 2,
                             child: Text(
                               "${vegetableService.scoreLevel1}",
-                              style: const TextStyle(
-                                fontSize: 20,
+                              style: TextStyle(
+                                fontSize: mediaWidth*0.05,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
                               ),
@@ -102,11 +109,11 @@ class GameDialogShowResult {
                           Expanded(
                             flex: 0,
                             child: Padding(
-                              padding: const EdgeInsets.only(right: 45.0),
+                              padding: EdgeInsets.only(right: mediaWidth*0.04),
                               child: Text(
                                 "(max. ${vegetableService.maxScoreLevel1})",
-                                style: const TextStyle(
-                                  fontSize: 20,
+                                style: TextStyle(
+                                  fontSize: mediaWidth*0.05,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
                                 ),
@@ -115,17 +122,17 @@ class GameDialogShowResult {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 10),
+                      SizedBox(height: mediaHeight*0.02),
                       Row(
                         children: [
-                          const Expanded(
+                          Expanded(
                             flex: 0,
                             child: Padding(
-                              padding: EdgeInsets.only(left: 45.0),
+                              padding: EdgeInsets.only(left: mediaWidth*0.04),
                               child: Text(
-                                "level2: ",
+                                "Level 2: ",
                                 style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: mediaWidth*0.05,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
                                 ),
@@ -136,8 +143,8 @@ class GameDialogShowResult {
                             flex: 2,
                             child: Text(
                               "${vegetableService.scoreLevel2}",
-                              style: const TextStyle(
-                                fontSize: 20,
+                              style: TextStyle(
+                                fontSize: mediaWidth*0.05,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
                               ),
@@ -146,11 +153,11 @@ class GameDialogShowResult {
                           Expanded(
                             flex: 0,
                             child: Padding(
-                              padding: const EdgeInsets.only(right: 45.0),
+                              padding: EdgeInsets.only(right: mediaWidth*0.04),
                               child: Text(
                                 "(max. ${vegetableService.maxScoreLevel2})",
-                                style: const TextStyle(
-                                  fontSize: 20,
+                                style: TextStyle(
+                                  fontSize: mediaWidth*0.05,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
                                 ),
@@ -159,17 +166,17 @@ class GameDialogShowResult {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 10),
+                      SizedBox(height: mediaHeight*0.02),
                       Row(
                         children: [
-                          const Expanded(
+                          Expanded(
                             flex: 0,
                             child: Padding(
-                              padding: EdgeInsets.only(left: 45.0),
+                              padding: EdgeInsets.only(left: mediaWidth*0.04),
                               child: Text(
-                                "level3: ",
+                                "Level 3: ",
                                 style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: mediaWidth*0.05,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
                                 ),
@@ -180,8 +187,8 @@ class GameDialogShowResult {
                             flex: 2,
                             child: Text(
                               "${vegetableService.scoreLevel3}",
-                              style: const TextStyle(
-                                fontSize: 20,
+                              style: TextStyle(
+                                fontSize: mediaWidth*0.05,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
                               ),
@@ -190,11 +197,11 @@ class GameDialogShowResult {
                           Expanded(
                             flex: 0,
                             child: Padding(
-                              padding: const EdgeInsets.only(right: 45.0),
+                              padding: EdgeInsets.only(right: mediaWidth*0.04),
                               child: Text(
                                 "(max. ${vegetableService.maxScoreLevel3})",
-                                style: const TextStyle(
-                                  fontSize: 20,
+                                style: TextStyle(
+                                  fontSize: mediaWidth*0.05,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
                                 ),
@@ -203,17 +210,17 @@ class GameDialogShowResult {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 10),
+                      SizedBox(height: mediaHeight*0.02),
                       Row(
                         children: [
-                          const Expanded(
+                          Expanded(
                             flex: 0,
                             child: Padding(
-                              padding: EdgeInsets.only(left: 45.0),
+                              padding: EdgeInsets.only(left: mediaWidth*0.04),
                               child: Text(
-                                "level4: ",
+                                "Level 4: ",
                                 style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: mediaWidth*0.05,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
                                 ),
@@ -224,8 +231,8 @@ class GameDialogShowResult {
                             flex: 2,
                             child: Text(
                               "${vegetableService.scoreLevel4}",
-                              style: const TextStyle(
-                                fontSize: 20,
+                              style: TextStyle(
+                                fontSize: mediaWidth*0.05,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
                               ),
@@ -234,11 +241,11 @@ class GameDialogShowResult {
                           Expanded(
                             flex: 0,
                             child: Padding(
-                              padding: const EdgeInsets.only(right: 45.0),
+                              padding: EdgeInsets.only(right: mediaWidth*0.04),
                               child: Text(
                                 "(max. ${vegetableService.maxScoreLevel4})",
-                                style: const TextStyle(
-                                  fontSize: 20,
+                                style: TextStyle(
+                                  fontSize: mediaWidth*0.05,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
                                 ),
@@ -247,7 +254,7 @@ class GameDialogShowResult {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 30),
+                      SizedBox(height: mediaHeight*0.03),
                       TextButton(
                         style: ButtonStyle(
                           elevation: MaterialStateProperty.all(
@@ -255,11 +262,11 @@ class GameDialogShowResult {
                           backgroundColor: MaterialStateProperty.all(
                               Colors.amber.shade500),
                         ),
-                        child: const Text(
-                          "Back to menu",
+                        child: Text(
+                          "Weiter..",
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 20,
+                            fontSize: mediaWidth*0.05,
                             fontWeight: FontWeight.bold,
                             letterSpacing: 4,
                           ),

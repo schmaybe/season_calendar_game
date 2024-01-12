@@ -4,12 +4,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:season_calendar_game/views/dialogs/show_result.dart';
 import '../../shared/custom_widgets/animated_star.dart';
 import '../../shared/constants.dart';
+import '../../shared/media_query_size.dart';
 
 class GameDialogLevelCompleted {
 
   static void showLevelCompletedDialog(BuildContext context, WidgetRef ref, int score,
       int maxScore, int level, VoidCallback onNextLevel) {
     double rating = (score / maxScore) * 5;
+    final double mediaWidth = getMediaWidthSize();
+    final double mediaHeight = getMediaHeightSize();
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -34,36 +37,28 @@ class GameDialogLevelCompleted {
                       ),
                     ),
                   ),
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width * 0.8,
-                  height: 400,
+                  width: mediaWidth * 0.8,
+                  height: mediaHeight * 0.6,
                   padding: const EdgeInsets.all(16),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Text(
-                        "Level $level Completed!",
-                        style: const TextStyle(
-                          fontSize: 30,
+                        "Level $level geschafft!",
+                        style: TextStyle(
+                          fontSize: mediaWidth*0.07,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
                       ),
-                      const SizedBox(height: 50),
+                      SizedBox(height: mediaHeight*0.05),
                       RatingBar.builder(
                         initialRating: rating,
                         ignoreGestures: true,
                         allowHalfRating: true,
                         direction: Axis.horizontal,
                         itemCount: 5,
-                        itemPadding: const EdgeInsets.symmetric(
-                            horizontal: 3.0),
-                        // itemBuilder: (context, _) => const Icon(
-                        //   Icons.star,
-                        //   color: Colors.amber,
-                        // ),
+                        itemPadding: const EdgeInsets.symmetric(horizontal: 3.0),
                         itemBuilder: (context, index) {
                           return AnimatedStar(
                             index: index,
@@ -73,25 +68,25 @@ class GameDialogLevelCompleted {
                         },
                         onRatingUpdate: (double value) {},
                       ),
-                      const SizedBox(height: 50),
+                      SizedBox(height: mediaHeight*0.05),
                       Text(
-                        "Your score: $score",
-                        style: const TextStyle(
-                          fontSize: 20,
+                        "Dein score: $score",
+                        style: TextStyle(
+                          fontSize: mediaWidth*0.07,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
                       ),
-                      const SizedBox(height: 10),
+                      SizedBox(height: mediaHeight*0.03),
                       Text(
-                        "Maximum score: $maxScore",
-                        style: const TextStyle(
-                          fontSize: 20,
+                        "max. score: $maxScore",
+                        style: TextStyle(
+                          fontSize: mediaWidth*0.07,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
                       ),
-                      const SizedBox(height: 50),
+                      SizedBox(height: mediaHeight*0.05),
                       TextButton(
                         style: ButtonStyle(
                           elevation: MaterialStateProperty.all(BorderSide
@@ -100,10 +95,10 @@ class GameDialogLevelCompleted {
                               .amber.shade500),
                         ),
                         child: Text(
-                          level >= 4 ? "Show Result Set" : "Next Level",
-                          style: const TextStyle(
+                          level >= 4 ? "Endergebnis" : "Nächstes Level",
+                          style: TextStyle(
                             color: Colors.white,
-                            fontSize: 20,
+                            fontSize: mediaWidth*0.05,
                             fontWeight: FontWeight.bold,
                             letterSpacing: 4,
                           ),

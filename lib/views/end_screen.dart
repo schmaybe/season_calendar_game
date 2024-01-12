@@ -9,7 +9,7 @@ class EndScreen extends StatefulWidget {
   EndScreenState createState() => EndScreenState();
 }
 
-class EndScreenState extends State<EndScreen> with SingleTickerProviderStateMixin {
+class EndScreenState extends State<EndScreen> with TickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
   late String secretText;
@@ -29,10 +29,10 @@ class EndScreenState extends State<EndScreen> with SingleTickerProviderStateMixi
     _getSecretImageAndText();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 3),
+      duration: const Duration(milliseconds: 2750),
     );
 
-    _animation = Tween(begin: -0.5, end: 1.3).animate(
+    _animation = Tween(begin: -0.5, end: 1.2).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeOut),
     );
 
@@ -55,20 +55,20 @@ class EndScreenState extends State<EndScreen> with SingleTickerProviderStateMixi
         secretImage = "assets/end/artichoke.png";
         break;
       case 4:
-        secretText = "Dein Wissen ist sehr Vielschichtig!!!";
+        secretText = "Dein Wissen ist sehr vielschichtig!!!";
         secretImage = "assets/end/onion.png";
         break;
       case 3:
-        secretText = "Dein Wissen schockt alles!!!";
-        secretImage = "assets/end/artichoke.png";
+        secretText = "Du bist eine lustige Kartoffel!!!";
+        secretImage = "assets/end/potato.png";
         break;
       case 2:
-        secretText = "Dein Wissen ist sehr Vielschichtig!!!";
-        secretImage = "assets/end/onion.png";
+        secretText = "Du bist noch grün hinter den Ohren!!!";
+        secretImage = "assets/end/kale.png";
         break;
       case 1:
-        secretText = "Dein Wissen schockt alles!!!";
-        secretImage = "assets/end/artichoke.png";
+        secretText = "Du bist ein Lauch!!!";
+        secretImage = "assets/end/leek.png";
         break;
     }
   }
@@ -113,6 +113,7 @@ class EndScreenState extends State<EndScreen> with SingleTickerProviderStateMixi
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Stack(
         children: [
           Positioned.fill(
@@ -122,7 +123,7 @@ class EndScreenState extends State<EndScreen> with SingleTickerProviderStateMixi
                 return Transform.scale(
                   scale: imageData.rotation,
                   child: Transform.rotate(
-                    angle: imageData.rotation * 4.8,
+                    angle: imageData.rotation * 5.21,
                     child: Container(
                       decoration: BoxDecoration(
                         image: DecorationImage(
@@ -145,7 +146,7 @@ class EndScreenState extends State<EndScreen> with SingleTickerProviderStateMixi
               alignment: Alignment.bottomCenter - const Alignment(0.0, 0.6),
               child: TweenAnimationBuilder(
                 duration: const Duration(milliseconds: 6000),
-                tween: Tween(begin: -20.0, end: -5.0),
+                tween: Tween(begin: -5.0, end: 10.0),
                 builder: (context, double value, child) {
                   return Transform.translate(
                     offset: Offset(value, 0),

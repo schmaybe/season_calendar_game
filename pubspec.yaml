@@ -81,6 +81,9 @@ flutter:
    - family: Ephesis
      fonts:
        - asset: assets/fonts/Ephesis-Regular.ttf
+   - family: RubikDoodleShadow
+     fonts:
+       - asset: assets/fonts/RubikDoodleShadow-Regular.ttf
 
 
   #

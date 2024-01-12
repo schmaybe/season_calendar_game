@@ -4,6 +4,7 @@ import 'package:season_calendar_game/model/option.dart';
 import '../../providers/providers.dart';
 import '../../shared/constants.dart';
 import '../../views/dialogs/level_failed.dart';
+import '../../views/dialogs/show_result.dart';
 
 class TimerHandler {
   final Ref ref;
@@ -56,7 +57,7 @@ class TimerHandler {
 
   int _getSecondsForDifficulty(var dif){
     switch (dif){
-      case Difficulty.leicht: return 30;
+      case Difficulty.leicht: return 20;
       case Difficulty.mittel: return 25;
       case Difficulty.schwer: return 20;
       default: return 35;
@@ -69,6 +70,7 @@ class TimerHandler {
     //Timer: reset
     Future.microtask(() => ref.read(timerServiceProvider.notifier).resetTimer());
     int maxScore = _getMaxScore(level, ref);
+
     Future.microtask(() => GameDialogLevelFailed.showLevelFailedDialog(context, level, score, maxScore, levelFailedTime,
             (){
           ref.read(timerHandlerProvider).timerExpired = true;
@@ -76,6 +78,7 @@ class TimerHandler {
           timerStarted = false;
         }
     ));
+
   }
 
   void stopTimer() {

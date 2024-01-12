@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:season_calendar_game/shared/media_query_size.dart';
 import 'package:season_calendar_game/views/end_screen.dart';
 import 'package:season_calendar_game/views/game_root.dart';
 import 'package:season_calendar_game/views/option_screen.dart';
@@ -21,13 +22,14 @@ class MyApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
     ));
+   setMediaSize(context);
     return MaterialApp(
       initialRoute: "/startScreen",
       routes: {
         "/startScreen": (context) => StartScreen(),
         "/gameRoot": (context) => GameRoot(),
         "/optionScreen": (context) => OptionScreen(),
-        // "/endScreen": (context) => EndScreen(initialRating: 5),
+        // "/endScreen": (context) => EndScreen(initialRating: 1)
       },
       home: StartScreen(),
     );

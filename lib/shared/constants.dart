@@ -8,8 +8,9 @@ const colorGameTheme = Color(0xFFD6D6DE);
 const colorGameTheme2 = Color(0x79378D60);
 //Fonts
 const String fontFamily = "Ephesis";
+const String fontFamily2 = "RubikDoodleShadow";
 
-const String levelFailedTime = "Time has expired :(";
+const String levelFailedTime = "Zeit ist abgelaufen :(";
 
-const String levelFailedScore = "Your Score is too low :(";
+const String levelFailedScore = "Dein Score ist \nzu niedrig :(";
 

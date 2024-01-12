@@ -4,6 +4,7 @@ import '../model/vegetable.dart';
 import '../providers/providers.dart';
 import '../shared/constants.dart';
 import '../shared/custom_widgets/score.dart';
+import '../shared/media_query_size.dart';
 
 class GameRoot extends ConsumerWidget {
   const GameRoot({super.key});
@@ -21,6 +22,8 @@ class GameRoot extends ConsumerWidget {
     final levelHandler = ref.read(levelCompletedProvider2);
     final timerValue = ref.watch(timerServiceProvider);
     final levelCompleted = ref.watch(levelCompletedProvider);
+    final double mediaWidth = getMediaWidthSize();
+    final double mediaHeight = getMediaHeightSize();
     
     levelHandler.handleLevelCompleted(context, ref);
     timerHandler.handleTimer(context, ref);
@@ -35,15 +38,37 @@ class GameRoot extends ConsumerWidget {
           children: [
             Expanded(
               flex: 3,
-              child: Text("Score $score"),
+              child: Text(
+                "Score $score",
+                style: TextStyle(
+                  fontFamily: fontFamily2,
+                  fontWeight: FontWeight.bold,
+                  fontSize: mediaWidth*0.05,
+                ),
+              ),
             ),
             Expanded(
               flex: 3,
-              child: Text("Level $level"),
+              child: Text(
+                "Level $level",
+                style: TextStyle(
+                  fontFamily: fontFamily2,
+                  fontWeight: FontWeight.bold,
+                  fontSize: mediaWidth*0.05,
+                ),
+
+              ),
             ),
             Expanded(
               flex: 2,
-              child: Text("$timerValue"),
+              child: Text(
+                "$timerValue",
+                style: TextStyle(
+                  fontFamily: fontFamily2,
+                  fontWeight: FontWeight.bold,
+                  fontSize: mediaWidth*0.05,
+                ),
+              ),
             ),
             Expanded(
               flex: 1,
@@ -77,13 +102,13 @@ class GameRoot extends ConsumerWidget {
             Center(
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height*0.5,
+                  height: MediaQuery.of(context).size.height*0.45,
                   child: Image.asset(vegetableService.currentVegetable.imgPath),
                 ),
             ),
             Text(
-                style: const TextStyle(
-                  fontSize: 25,
+                style: TextStyle(
+                  fontSize: mediaWidth*0.06,
                   letterSpacing: 1.5,
                   color: Colors.white,
                   fontWeight: FontWeight.w600,
@@ -100,15 +125,15 @@ class GameRoot extends ConsumerWidget {
                   buttonColor = seasonCheckResults[season]! ? Colors.white.withOpacity(0.4) : Colors.transparent;
                 }
                 return Padding(
-                  padding: const EdgeInsets.only(top: 20),
+                  padding: EdgeInsets.only(top: mediaWidth*0.05),
                   child: Column(
                     children: [
                       if (seasonPoints.containsKey(season))
                         buildSeasonScoreIndicator(seasonPoints[season]!),
-                      SizedBox(height: MediaQuery.of(context).size.height*0.02),
+                      SizedBox(height: mediaHeight*0.02),
                       SizedBox(
-                        width: MediaQuery.of(context).size.width*0.2,
-                        height: MediaQuery.of(context).size.height*0.11,
+                        width: mediaWidth*0.2,
+                        height: mediaHeight*0.11,
                         child: ElevatedButton(
                           onPressed: () => vegetableService.toggleSeason(season, ref),
                           style: ElevatedButton.styleFrom(
@@ -116,7 +141,7 @@ class GameRoot extends ConsumerWidget {
                             shadowColor: Colors.transparent,
                             elevation: 0,
                             padding: EdgeInsets.zero,
-                            fixedSize: const Size(70, 70),
+                            // fixedSize: const Size(70, 70),
                             tapTargetSize: MaterialTapTargetSize.padded,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(50),
@@ -131,25 +156,19 @@ class GameRoot extends ConsumerWidget {
                             ),
                           ),
                         ),
-                        // child: FloatingActionButton(
-                        //   heroTag: null,
-                        //   onPressed: () => vegetableService.toggleSeason(season, ref),
-                        //   backgroundColor: buttonColor,
-                        //   child: Text(season.toString().split('.').last),
-                        // ),
                       ),
                     ],
                   ),
                 );
               }).toList(),
             ),
-            SizedBox(height: MediaQuery.of(context).size.height*0.06),
+            SizedBox(height: mediaHeight*0.06),
             ElevatedButton(
               style: ButtonStyle(
                 backgroundColor: const MaterialStatePropertyAll(colorGameTheme2),
                 elevation: const MaterialStatePropertyAll(0),
                 padding: MaterialStateProperty.all(
-                  EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.3, vertical: 12),
+                  EdgeInsets.symmetric(horizontal: mediaWidth*0.3, vertical: mediaHeight*0.01),
                 ),
               ),
               onPressed: (){
@@ -167,9 +186,16 @@ class GameRoot extends ConsumerWidget {
                 vegetableService.calculateAndUpdateSeasonPoints(ref);
                 }
               },
-              child: const Text("GO"),
+              child: Text(
+                "G O",
+                style: TextStyle(
+                  fontFamily: fontFamily2,
+                  fontWeight: FontWeight.bold,
+                  fontSize: mediaWidth*0.05,
+                ),
+              ),
             ),
-            SizedBox(height: MediaQuery.of(context).size.height*0.02),
+            SizedBox(height: mediaHeight*0.02),
           ],
         ),
       ),

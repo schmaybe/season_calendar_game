@@ -37,23 +37,23 @@ class GameDialogLevelFailed {
                       Text(
                         text,
                         style: const TextStyle(
-                          fontSize: 30,
+                          fontSize: 27,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
                       ),
                       const SizedBox(height: 20),
                       Text(
-                        "Level $level failed!",
+                        "Level $level nicht geschafft!",
                         style: const TextStyle(
-                          fontSize: 30,
+                          fontSize: 27,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
                       ),
-                      const SizedBox(height: 60),
+                      const SizedBox(height: 70 ),
                       Text(
-                        "Your score: $score",
+                        "Dein Score: $score",
                         style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -62,7 +62,7 @@ class GameDialogLevelFailed {
                       ),
                       const SizedBox(height: 10),
                       Text(
-                        "Maximum score: $maxScore",
+                        "Maximum Score: $maxScore",
                         style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -70,26 +70,54 @@ class GameDialogLevelFailed {
                         ),
                       ),
                       const SizedBox(height: 60),
-                      TextButton(
+                      // TextButton(
+                      //   style: ButtonStyle(
+                      //     elevation: MaterialStateProperty.all(BorderSide
+                      //         .strokeAlignOutside),
+                      //     backgroundColor: MaterialStateProperty.all(Colors
+                      //         .amber.shade500),
+                      //   ),
+                      //   child: const Text(
+                      //     "Retry Game",
+                      //     style: TextStyle(
+                      //       color: Colors.white,
+                      //       fontSize: 20,
+                      //       fontWeight: FontWeight.bold,
+                      //       letterSpacing: 4,
+                      //     ),
+                      //   ),
+                      //   onPressed: () {
+                      //     timerExpired();
+                      //     Navigator.popUntil(context, ModalRoute.withName("/startScreen"));
+                      //   },
+                      // ),
+                      ElevatedButton(
                         style: ButtonStyle(
-                          elevation: MaterialStateProperty.all(BorderSide
-                              .strokeAlignOutside),
-                          backgroundColor: MaterialStateProperty.all(Colors
-                              .amber.shade500),
-                        ),
-                        child: const Text(
-                          "Retry Game",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 4,
+                          backgroundColor: const MaterialStatePropertyAll(Colors.transparent),
+                          elevation: const MaterialStatePropertyAll(0),
+                          padding: MaterialStateProperty.all(
+                            const EdgeInsets.symmetric(horizontal: 80, vertical: 10),
+                          ),
+                          shape: MaterialStateProperty.all(
+                            const RoundedRectangleBorder(
+                              side: BorderSide(
+                                color: Colors.white,
+                                width: 2,
+                              ),
+                            ),
                           ),
                         ),
                         onPressed: () {
                           timerExpired();
                           Navigator.popUntil(context, ModalRoute.withName("/startScreen"));
                         },
+                        child: const Text(
+                          "Zurück",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 30,
+                          ),
+                        ),
                       ),
                     ],
                   ),
