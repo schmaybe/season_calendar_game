@@ -57,7 +57,7 @@ class TimerHandler {
 
   int _getSecondsForDifficulty(var dif){
     switch (dif){
-      case Difficulty.leicht: return 20;
+      case Difficulty.leicht: return 30;
       case Difficulty.mittel: return 25;
       case Difficulty.schwer: return 20;
       default: return 35;

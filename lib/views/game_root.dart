@@ -195,7 +195,7 @@ class GameRoot extends ConsumerWidget {
                 ),
               ),
             ),
-            SizedBox(height: mediaHeight*0.02),
+            SizedBox(height: mediaHeight*0.03),
           ],
         ),
       ),
