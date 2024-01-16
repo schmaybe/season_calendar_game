@@ -13,7 +13,7 @@ final vegetableServiceProvider = Provider<VegetableService>((ref) {
 final selectedSeasonsProvider = StateProvider<List<Season>>((ref) => []);
 
 final initializationProvider = Provider.autoDispose<void>((ref) {
-  ref.read(vegetableServiceProvider).defineVegetableLevels();
+  ref.read(vegetableServiceProvider).defineVegetableLevelsNEW();          //*******changes cuz NEW 3 times 8 vegetables*******
 });
 
 final seasonCheckResultsProvider = StateProvider<Map<Season, bool?>>((ref) => {});

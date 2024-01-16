@@ -34,7 +34,7 @@ class LevelCompletedHandler {
               }
           ));
         }else {
-          if (level <= 4) {
+          if (level <= 3) {                                                                                  //******changes from 4 to 3******
             //Future.microtask(() => ref.read(levelCompletedProvider.notifier).state = false);
             Future.microtask(() =>
                 GameDialogLevelCompleted.showLevelCompletedDialog(
