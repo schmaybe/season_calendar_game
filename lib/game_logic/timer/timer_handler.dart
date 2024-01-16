@@ -22,7 +22,7 @@ class TimerHandler {
     final timerValue = ref.watch(timerServiceProvider);
     final dif = ref.watch(difficultyProvider);
 
-    if(level <= 4 && timerValue <= 30 && vegetableResult == false && timerStarted == false){
+    if(level <= 3 && timerValue <= 30 && vegetableResult == false && timerStarted == false){          //*******changes from 4 to 3***********
       _startTimerForLevel(level, dif);
       timerStarted = true;
     }

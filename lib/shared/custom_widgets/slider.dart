@@ -10,10 +10,10 @@ class CustomSliderTheme {
       trackHeight: 6.0,
       thumbColor: Colors.white,
       inactiveTickMarkColor: Colors.white,
-      tickMarkShape: const RoundSliderTickMarkShape(tickMarkRadius: 10.0),
-      thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 18.0),
+      tickMarkShape: const RoundSliderTickMarkShape(tickMarkRadius: 8.0),
+      thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 20.0),
       overlayColor: Colors.white.withAlpha(32),
-      overlayShape: const RoundSliderOverlayShape(overlayRadius: 15.0),
+      overlayShape: const RoundSliderOverlayShape(overlayRadius: 20.0),
     );
   }
 }

@@ -29,7 +29,7 @@ class GameDialogShowResult {
         return Stack(
           children: <Widget>[
             Positioned(
-              top: 50,
+              top: mediaHeight * 0.02,
               child: Dialog(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0),
