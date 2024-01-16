@@ -14,7 +14,7 @@ class GameDialogLevelFailed {
         return Stack(
           children: <Widget>[
             Positioned(
-              top: mediaHeight * 0.02,
+              top: mediaHeight * 0.03,
               child: Dialog(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0),
@@ -40,7 +40,7 @@ class GameDialogLevelFailed {
                       Text(
                         text,
                         style: TextStyle(
-                          fontSize: mediaWidth*0.05,
+                          fontSize: mediaWidth*0.055,
                           fontWeight: FontWeight.bold,
                           color: Colors.white
                         ),
@@ -49,7 +49,7 @@ class GameDialogLevelFailed {
                       Text(
                         "Level $level nicht geschafft!",
                         style: TextStyle(
-                          fontSize: mediaHeight*0.05,
+                          fontSize: mediaWidth*0.055,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
@@ -58,7 +58,7 @@ class GameDialogLevelFailed {
                       Text(
                         "Dein Score: $score",
                         style: TextStyle(
-                          fontSize: mediaHeight*0.04,
+                          fontSize: mediaWidth*0.06,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
@@ -67,12 +67,12 @@ class GameDialogLevelFailed {
                       Text(
                         "Maximum Score: $maxScore",
                         style: TextStyle(
-                          fontSize: mediaHeight*0.04,
+                          fontSize: mediaWidth*0.06,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
                       ),
-                      SizedBox(height: mediaHeight*0.05),
+                      SizedBox(height: mediaHeight*0.08),
                       // TextButton(
                       //   style: ButtonStyle(
                       //     elevation: MaterialStateProperty.all(BorderSide
@@ -118,7 +118,7 @@ class GameDialogLevelFailed {
                           "Zurück",
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: mediaHeight*0.05,
+                            fontSize: mediaWidth*0.06,
                           ),
                         ),
                       ),

@@ -12,5 +12,5 @@ const String fontFamily2 = "RubikDoodleShadow";
 
 const String levelFailedTime = "Zeit ist abgelaufen :(";
 
-const String levelFailedScore = "Dein Score ist \nzu niedrig :(";
+const String levelFailedScore = "Dein Score ist zu niedrig :(";
 
