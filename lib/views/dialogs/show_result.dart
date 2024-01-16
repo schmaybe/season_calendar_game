@@ -12,8 +12,8 @@ class GameDialogShowResult {
     final vegetableService = ref.watch(vegetableServiceProvider);
     final double mediaWidth = getMediaWidthSize();
     final double mediaHeight = getMediaHeightSize();
-    int totalScore = vegetableService.scoreLevel1+vegetableService.scoreLevel2+vegetableService.scoreLevel3+vegetableService.scoreLevel4;
-    int totalMaxScore = vegetableService.maxScoreLevel1+vegetableService.maxScoreLevel2+vegetableService.maxScoreLevel3+vegetableService.maxScoreLevel4;
+    int totalScore = vegetableService.scoreLevel1+vegetableService.scoreLevel2+vegetableService.scoreLevel3;       //*****deleted +vegetableService.scoreLevel4******
+    int totalMaxScore = vegetableService.maxScoreLevel1+vegetableService.maxScoreLevel2+vegetableService.maxScoreLevel3;  //*****deleted +vegetableService.maxScoreLevel******
     double rating = (totalScore/totalMaxScore)*5;
     int endScreenRating = rating.round();
     print(rating);
@@ -210,50 +210,52 @@ class GameDialogShowResult {
                           ),
                         ],
                       ),
-                      SizedBox(height: mediaHeight*0.02),
-                      Row(
-                        children: [
-                          Expanded(
-                            flex: 0,
-                            child: Padding(
-                              padding: EdgeInsets.only(left: mediaWidth*0.04),
-                              child: Text(
-                                "Level 4: ",
-                                style: TextStyle(
-                                  fontSize: mediaWidth*0.05,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            flex: 2,
-                            child: Text(
-                              "${vegetableService.scoreLevel4}",
-                              style: TextStyle(
-                                fontSize: mediaWidth*0.05,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            flex: 0,
-                            child: Padding(
-                              padding: EdgeInsets.only(right: mediaWidth*0.04),
-                              child: Text(
-                                "(max. ${vegetableService.maxScoreLevel4})",
-                                style: TextStyle(
-                                  fontSize: mediaWidth*0.05,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                      //************************************************************************
+                      // SizedBox(height: mediaHeight*0.02),
+                      // Row(
+                      //   children: [
+                      //     Expanded(
+                      //       flex: 0,
+                      //       child: Padding(
+                      //         padding: EdgeInsets.only(left: mediaWidth*0.04),
+                      //         child: Text(
+                      //           "Level 4: ",
+                      //           style: TextStyle(
+                      //             fontSize: mediaWidth*0.05,
+                      //             fontWeight: FontWeight.bold,
+                      //             color: Colors.white,
+                      //           ),
+                      //         ),
+                      //       ),
+                      //     ),
+                      //     Expanded(
+                      //       flex: 2,
+                      //       child: Text(
+                      //         "${vegetableService.scoreLevel4}",
+                      //         style: TextStyle(
+                      //           fontSize: mediaWidth*0.05,
+                      //           fontWeight: FontWeight.bold,
+                      //           color: Colors.white,
+                      //         ),
+                      //       ),
+                      //     ),
+                      //     Expanded(
+                      //       flex: 0,
+                      //       child: Padding(
+                      //         padding: EdgeInsets.only(right: mediaWidth*0.04),
+                      //         child: Text(
+                      //           "(max. ${vegetableService.maxScoreLevel4})",
+                      //           style: TextStyle(
+                      //             fontSize: mediaWidth*0.05,
+                      //             fontWeight: FontWeight.bold,
+                      //             color: Colors.white,
+                      //           ),
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
+                      //**********************************************************************
                       SizedBox(height: mediaHeight*0.03),
                       TextButton(
                         style: ButtonStyle(

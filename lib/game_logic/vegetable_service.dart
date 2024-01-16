@@ -48,21 +48,51 @@ class VegetableService{
     }
     return currentLevelVegetables.isNotEmpty ? currentLevelVegetables[currentIndex] : throw Exception("Level is empty");
   }
+  //****************************************************************
+  // void defineVegetableLevels() {
+  //   if(!_isInitialized) {
+  //     _isInitialized = true;
+  //     shuffledVegetables.shuffle();
+  //     int perLevel = 10;
+  //     vegetablesLevel1 = shuffledVegetables.take(perLevel).toList();
+  //     vegetablesLevel2 = shuffledVegetables.skip(perLevel).take(perLevel).toList();
+  //     vegetablesLevel3 = shuffledVegetables.skip(2 * perLevel).take(perLevel).toList();
+  //     vegetablesLevel4 = shuffledVegetables.skip(3 * perLevel).take(perLevel).toList();
+  //     calculateMaxScorePerLevel();
+  //   }
+  // }
+  //*****************************************************************
 
-  void defineVegetableLevels() {
+  void defineVegetableLevelsNEW() {
     if(!_isInitialized) {
       _isInitialized = true;
       shuffledVegetables.shuffle();
-      int perLevel = 10;
+      int perLevel = 8;
       vegetablesLevel1 = shuffledVegetables.take(perLevel).toList();
       vegetablesLevel2 = shuffledVegetables.skip(perLevel).take(perLevel).toList();
       vegetablesLevel3 = shuffledVegetables.skip(2 * perLevel).take(perLevel).toList();
-      vegetablesLevel4 = shuffledVegetables.skip(3 * perLevel).take(perLevel).toList();
-      calculateMaxScorePerLevel();
+      calculateMaxScorePerLevelNEW();
     }
   }
 
-  void calculateMaxScorePerLevel(){
+  //*****************************************************************
+  // void calculateMaxScorePerLevel(){
+  //   for (Vegetable vegetable in vegetablesLevel1){
+  //     maxScoreLevel1 += vegetable.seasons.length * 10;
+  //   }
+  //   for (Vegetable vegetable in vegetablesLevel2){
+  //     maxScoreLevel2 += vegetable.seasons.length * 10;
+  //   }
+  //   for (Vegetable vegetable in vegetablesLevel3){
+  //     maxScoreLevel3 += vegetable.seasons.length * 10;
+  //   }
+  //   for (Vegetable vegetable in vegetablesLevel4){
+  //     maxScoreLevel4 += vegetable.seasons.length * 10;
+  //   }
+  // }
+  //*****************************************************************
+
+  void calculateMaxScorePerLevelNEW(){
     for (Vegetable vegetable in vegetablesLevel1){
       maxScoreLevel1 += vegetable.seasons.length * 10;
     }
@@ -71,9 +101,6 @@ class VegetableService{
     }
     for (Vegetable vegetable in vegetablesLevel3){
       maxScoreLevel3 += vegetable.seasons.length * 10;
-    }
-    for (Vegetable vegetable in vegetablesLevel4){
-      maxScoreLevel4 += vegetable.seasons.length * 10;
     }
   }
 

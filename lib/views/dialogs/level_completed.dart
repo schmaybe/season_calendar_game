@@ -105,7 +105,7 @@ class GameDialogLevelCompleted {
                         ),
                         onPressed: () {
                           Navigator.of(context).pop();
-                          if (level >= 4) {
+                          if (level >= 3) {                                                               //*******changes from 4 to 3***********
                             onNextLevel();
                             Future.microtask(() => GameDialogShowResult.showResultDialog(context, ref));
                           } else {
