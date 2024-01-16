@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import '../../shared/constants.dart';
+import '../../shared/media_query_size.dart';
 
 class GameDialogLevelFailed {
 
   static void showLevelFailedDialog(BuildContext context, int level, int score, int maxScore, String text, VoidCallback timerExpired) {
+    final double mediaWidth = getMediaWidthSize();
+    final double mediaHeight = getMediaHeightSize();
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -11,7 +14,7 @@ class GameDialogLevelFailed {
         return Stack(
           children: <Widget>[
             Positioned(
-              top: 50,
+              top: mediaHeight * 0.02,
               child: Dialog(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0),
@@ -29,33 +32,33 @@ class GameDialogLevelFailed {
                     ),
                   ),
                   width: MediaQuery.of(context).size.width * 0.8,
-                  height: 400,
+                  height: mediaHeight * 0.6,
                   padding: const EdgeInsets.all(16),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Text(
                         text,
-                        style: const TextStyle(
-                          fontSize: 27,
+                        style: TextStyle(
+                          fontSize: mediaWidth*0.05,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: Colors.white
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      SizedBox(height: mediaHeight*0.05),
                       Text(
                         "Level $level nicht geschafft!",
-                        style: const TextStyle(
-                          fontSize: 27,
+                        style: TextStyle(
+                          fontSize: mediaHeight*0.05,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
                       ),
-                      const SizedBox(height: 70 ),
+                      SizedBox(height: mediaHeight*0.06),
                       Text(
                         "Dein Score: $score",
-                        style: const TextStyle(
-                          fontSize: 20,
+                        style: TextStyle(
+                          fontSize: mediaHeight*0.04,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
@@ -63,13 +66,13 @@ class GameDialogLevelFailed {
                       const SizedBox(height: 10),
                       Text(
                         "Maximum Score: $maxScore",
-                        style: const TextStyle(
-                          fontSize: 20,
+                        style: TextStyle(
+                          fontSize: mediaHeight*0.04,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
                       ),
-                      const SizedBox(height: 60),
+                      SizedBox(height: mediaHeight*0.05),
                       // TextButton(
                       //   style: ButtonStyle(
                       //     elevation: MaterialStateProperty.all(BorderSide
@@ -111,11 +114,11 @@ class GameDialogLevelFailed {
                           timerExpired();
                           Navigator.popUntil(context, ModalRoute.withName("/startScreen"));
                         },
-                        child: const Text(
+                        child: Text(
                           "Zurück",
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 30,
+                            fontSize: mediaHeight*0.05,
                           ),
                         ),
                       ),

@@ -43,12 +43,11 @@ class OptionScreen extends ConsumerWidget {
                   fontFamily: fontFamily,
                 ),
               ),
-              SizedBox(height: mediaHeight*0.05),
+              SizedBox(height: mediaHeight*0.04),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: Text(
                   "Hier kannst du die Zeit pro Gemüse anpassen. Mit jedem Level hast du 5 Sekunden weniger Zeit: \n"
-                  "\n"
                   "leicht: Startzeit 30s\n"
                   "mittel: Startzeit 25s\n"
                   "schwer: Startzeit 20s    ",
@@ -80,7 +79,7 @@ class OptionScreen extends ConsumerWidget {
                       ),
                     ),
                     Positioned(
-                      bottom: 0,
+                      bottom: -10.0,
                       left: 0,
                       right: 0,
                       child: buildSliderLabels(),
@@ -88,7 +87,7 @@ class OptionScreen extends ConsumerWidget {
                   ],
                 ),
               ),
-              SizedBox(height: mediaHeight*0.08),
+              SizedBox(height: mediaHeight*0.05),
               ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor: const MaterialStatePropertyAll(Colors.transparent),

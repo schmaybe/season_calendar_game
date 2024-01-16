@@ -21,7 +21,7 @@ List<Vegetable> vegetables = [
   Vegetable(name: "Endiviensalat", imgPath: "assets/vegetables/endiviensalat.png", seasons: [Season.summer, Season.autumn]),
   Vegetable(name: "Erbsen/Zuckererbsen", imgPath: "assets/vegetables/zuckererbsen.png", seasons: [Season.summer, Season.autumn]),
   // Vegetable(name: "Feldsalat/Rapunzel", imgPath: "assets/vegetables/feldsalat.png", seasons: [Season.spring, Season.summer, Season.autumn, Season.winter]),
-  Vegetable(name: "Gemüsefenchel", imgPath: "assets/vegetables/gemuese_fenchel.png", seasons: [Season.spring, Season.summer, Season.autumn, Season.winter]),
+  Vegetable(name: "Gemüsefenchel", imgPath: "assets/vegetables/gemuese_fenchel.png", seasons: [Season.summer, Season.autumn]),
   Vegetable(name: "Gemüsepaprika", imgPath: "assets/vegetables/paprika.png", seasons: [Season.spring, Season.summer, Season.autumn]),
   Vegetable(name: "Grünkohl", imgPath: "assets/vegetables/gruenkohl.png", seasons: [Season.autumn, Season.winter]),
   // Vegetable(name: "Gurke", imgPath: "assets/vegetables/gurke.png", seasons: [Season.spring, Season.summer, Season.autumn]),

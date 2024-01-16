@@ -20,7 +20,7 @@ class GameDialogLevelCompleted {
         return Stack(
           children: <Widget>[
             Positioned(
-              top: 50,
+              top: mediaHeight * 0.02,
               child: Dialog(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0),
@@ -95,7 +95,7 @@ class GameDialogLevelCompleted {
                               .amber.shade500),
                         ),
                         child: Text(
-                          level >= 4 ? "Endergebnis" : "Nächstes Level",
+                          level >= 3 ? "Endergebnis" : "Nächstes Level",                                  //*******changes from 4 to 3***********
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: mediaWidth*0.05,
